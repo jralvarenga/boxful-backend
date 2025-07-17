@@ -116,11 +116,40 @@ Prisma.NullTypes = {
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  name: 'name',
+  firstName: 'firstName',
+  lastName: 'lastName',
   gender: 'gender',
   birthDate: 'birthDate',
   phoneNumber: 'phoneNumber',
   password: 'password',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  collectionAddress: 'collectionAddress',
+  scheduledDate: 'scheduledDate',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  phoneNumber: 'phoneNumber',
+  recipientAddress: 'recipientAddress',
+  department: 'department',
+  municipality: 'municipality',
+  referencePoint: 'referencePoint',
+  instructions: 'instructions',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  length: 'length',
+  height: 'height',
+  width: 'width',
+  weight: 'weight',
+  content: 'content',
   createdAt: 'createdAt'
 };
 
@@ -136,7 +165,9 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Order: 'Order',
+  Product: 'Product'
 };
 
 /**

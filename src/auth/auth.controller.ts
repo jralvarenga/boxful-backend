@@ -1,4 +1,3 @@
-
 import {
   Body,
   Controller,
@@ -7,10 +6,10 @@ import {
   HttpStatus,
   Post,
   Request,
-  UseGuards
-} from '@nestjs/common';
-import { AuthGuard } from './auth.guard';
-import { AuthService, LoginBody, RegisterBody } from './auth.service';
+  UseGuards,
+} from '@nestjs/common'
+import { AuthGuard } from './auth.guard'
+import { AuthService, LoginBody, RegisterBody } from './auth.service'
 
 @Controller('auth')
 export class AuthController {
@@ -19,18 +18,18 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(@Body() body: LoginBody) {
-    return this.authService.signIn(body);
+    return this.authService.signIn(body)
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('register')
   register(@Body() body: RegisterBody) {
-    return this.authService.register(body);
+    return this.authService.register(body)
   }
 
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
-    return req.user;
+    return req.user
   }
 }
