@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
-import { User } from '../db/prisma'
+import { User } from '@prisma/client'
 import { JwtService } from '@nestjs/jwt'
 
 export interface LoginBody extends Pick<User, 'email' | 'password'> {}
@@ -61,7 +61,7 @@ export class AuthService {
   }
 
   async register(body: RegisterBody): Promise<{ access_token: string }> {
-    const user = await this.prismaService.extendedPrismaClient().user.create({
+    const user = await this.prismaService.user.create({
       data: body,
     })
 
@@ -87,9 +87,10 @@ export class AuthService {
       lastName,
       phoneNumber,
     }
+    const jwt = await this.jwtService.signAsync(payload)
 
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      access_token: jwt,
     }
   }
 }
