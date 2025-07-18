@@ -12,7 +12,7 @@ import { PrismaModule } from 'src/prisma.module'
       secret: jwtConstants.secret,
       // signOptions: { expiresIn: '60s' },
     }),
-    PrismaModule
+    PrismaModule,
   ],
   providers: [AuthService],
   controllers: [AuthController],
