@@ -17,13 +17,11 @@ export class AuthService {
     email,
     password,
   }: LoginBody): Promise<{ access_token: string }> {
-    const user = await this.prismaService
-      .extendedPrismaClient()
-      .user.findUnique({
-        where: {
-          email,
-        },
-      })
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        email,
+      },
+    })
 
     if (!user) {
       throw new UnauthorizedException('User not exist')

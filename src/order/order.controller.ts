@@ -11,7 +11,12 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common'
-import { CreateOrderBody, OrderService, UpdateOrderBody } from './order.service'
+import {
+  CreateOrderBody,
+  CreateProductBody,
+  OrderService,
+  UpdateOrderBody,
+} from './order.service'
 import { AuthGuard } from 'src/auth/auth.guard'
 
 @Controller('orders')
@@ -55,5 +60,19 @@ export class OrderController {
   delete(@Request() req, @Param('id') id: string) {
     const user = req.user
     return this.orderService.delete(id)
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Post('/:id/products')
+  @UseGuards(AuthGuard)
+  addProducts(@Body() body: CreateProductBody[], @Param('id') id: string) {
+    return this.orderService.addProducts(id, body)
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Delete('/products/:productId')
+  @UseGuards(AuthGuard)
+  removeProducts(@Param('orderId') orderId: string) {
+    return this.orderService.deleteProduct(orderId)
   }
 }

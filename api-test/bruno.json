@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "boxful api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

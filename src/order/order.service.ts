@@ -1,10 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { Order } from '@prisma/client'
+import { Order, Product } from '@prisma/client'
 import { PrismaService } from 'src/prisma.service'
 
 export interface CreateOrderBody
   extends Omit<Order, 'id' | 'createdAt' | 'user' | 'userId'> {}
+export interface CreateProductBody extends Omit<Product, 'id' | 'createdAt'> {}
 export interface UpdateOrderBody extends Partial<Order> {}
 
 @Injectable()
@@ -18,6 +19,11 @@ export class OrderService {
     const orders = await this.prismaService.order.findMany({
       where: {
         userId,
+      },
+      include: {
+        _count: {
+          select: { Product: true },
+        },
       },
     })
 
@@ -75,5 +81,26 @@ export class OrderService {
     })
 
     return order
+  }
+
+  async addProducts(orderId: string, body: CreateProductBody[]) {
+    const products = await this.prismaService.product.createMany({
+      data: body.map((product) => ({
+        ...product,
+        orderId,
+      })),
+    })
+
+    return products
+  }
+
+  async deleteProduct(productId: string) {
+    const products = await this.prismaService.product.delete({
+      where: {
+        id: productId,
+      },
+    })
+
+    return products
   }
 }
