@@ -35,6 +35,7 @@ export class OrderService {
       include: {
         Product: {
           select: {
+            id: true,
             content: true,
             height: true,
             length: true,

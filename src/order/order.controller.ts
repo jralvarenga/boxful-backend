@@ -57,8 +57,7 @@ export class OrderController {
   @HttpCode(HttpStatus.OK)
   @Delete(':id')
   @UseGuards(AuthGuard)
-  delete(@Request() req, @Param('id') id: string) {
-    const user = req.user
+  delete(@Param('id') id: string) {
     return this.orderService.delete(id)
   }
 
@@ -72,7 +71,7 @@ export class OrderController {
   @HttpCode(HttpStatus.OK)
   @Delete('/products/:productId')
   @UseGuards(AuthGuard)
-  removeProducts(@Param('orderId') orderId: string) {
-    return this.orderService.deleteProduct(orderId)
+  removeProducts(@Param('productId') productId: string) {
+    return this.orderService.deleteProduct(productId)
   }
 }
