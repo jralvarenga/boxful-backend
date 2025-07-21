@@ -8,8 +8,8 @@
   "scripts": {
     "commit": "git-cz",
     "commit:all": "git add -A && git-cz",
-    "prebuild": "rimraf dist",
-    "build": "nest build",
+    "prebuild": "rimraf dist && prisma generate",
+    "build": "&& nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch",
