@@ -38,36 +38,21 @@ cd boxful-backend
 
 ### 2. Crear el archivo `.env`
 
+Copia el contenido de .env.sample a .env y reemplaza con tus variables de base de datos y secretos
+
 ```env
 DATABASE_URL=mongodb://USERNAME:PASSWORD@HOST/DATABASE
 AUTH_SECRET=testauthsecret_changeit
-```
-
-### 3. Iniciar MongoDB con Docker
-
-```bash
-npm run db-up
-
-o
-
-docker compose up -d
 ```
 
 ### 4. Instalar dependencias e iniciar la API
 
 ```bash
 npm install
-npm run dev
+npm run start
 ```
 
 La API estará corriendo en: `http://localhost:3000`
-
----
-
-## 🌐 Live Preview
-
-La app está desplegada en:  
-🔗 **[https://xxxxx.com](https://xxxxx.com)**
 
 
 ## 📬 Autenticación
